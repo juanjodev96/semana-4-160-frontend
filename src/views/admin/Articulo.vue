@@ -67,9 +67,9 @@
       v-model="dialogAlert"
       :timeout="timeout"
       center
-      shaped
+      dark
       bottom
-      right
+      outlined
       transition="slide-y-reverse-transition"
       :color="coloAlert"
     >
@@ -146,7 +146,7 @@ export default {
           sortable: true,
           align: "center",
         },
-        
+
         { text: "Código", value: "codigo", sortable: true, align: "center" },
         { text: "Nombre", value: "nombre", sortable: true, align: "center" },
         {
@@ -173,7 +173,6 @@ export default {
           sortable: true,
           align: "center",
         },
-       
       ],
 
       valida: 0,
@@ -187,13 +186,13 @@ export default {
       precio_venta: "",
       stock: "",
       descripcion: "",
-      estado: 0,
+      estado: 1,
     };
   },
 
   created() {
     this.listar();
-    
+
     this.derechos = this.$store.state.usuario.permisos.articulos;
     console.log(this.derechos);
   },
@@ -262,9 +261,9 @@ export default {
       this.reroll();
       this.textDialogAler = mensaje;
       this.closeDialog();
-       this.coloAlert = type > 0 ? "accent" : "error";
+      this.coloAlert = type > 0 ? "accent" : "error";
       this.isloading = false;
-       this.dialogAlert = true;
+      this.dialogAlert = true;
     },
     //-- fin dialogos
 

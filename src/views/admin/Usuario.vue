@@ -93,9 +93,9 @@
       v-model="dialogAlert"
       :timeout="timeout"
       center
-      shaped
+      dark
       bottom
-      right
+      outlined
       transition="slide-y-reverse-transition"
       :color="coloAlert"
     >

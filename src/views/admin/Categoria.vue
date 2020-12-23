@@ -47,22 +47,15 @@
       v-model="dialogAlert"
       :timeout="timeout"
       center
-      shaped
+      dark
       bottom
-      right
-     
+      outlined
       transition="slide-y-reverse-transition"
       :color="coloAlert"
     >
-    <div
-      class=" text-center title  text "
-      
-      
-      
-    >
-
-      {{ textDialogAler }}
-    </div>
+      <div class="text-center title text">
+        {{ textDialogAler }}
+      </div>
 
       <template v-slot:action="{ attrs }">
         <v-btn
@@ -76,6 +69,7 @@
         </v-btn>
       </template>
     </v-snackbar>
+
     <data-table-base
       :title="titles"
       :data="dataCategorias"
@@ -117,9 +111,9 @@ export default {
       title: "Categoria",
       titles: "Categorias",
       dataCategorias: [],
-      
+
       headers: [
-          {
+        {
           text: "Opciones",
           value: "opciones",
           sortable: false,
@@ -139,7 +133,6 @@ export default {
           sortable: false,
           align: "center",
         },
-        
       ],
 
       valida: 0,
@@ -152,7 +145,7 @@ export default {
 
   created() {
     this.listar();
-    console.log(this.$store.state.usuario.permisos.categorias)
+    console.log(this.$store.state.usuario.permisos.categorias);
     this.derechos = this.$store.state.usuario.permisos.categorias;
   },
   methods: {

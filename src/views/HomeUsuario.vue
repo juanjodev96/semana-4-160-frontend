@@ -1,7 +1,7 @@
 <template >
-  <v-app id="menu" >
-    <v-app-bar app color="primary" dark dense font="bold">
-      <h1>Mountain Gear</h1>
+  <v-app id="menu">
+    <v-app-bar app dark dense font="bold">
+      <h1>innovation inc</h1>
       <v-spacer></v-spacer>
 
       <v-btn style="font-size: 20px" text color=" " :to="{ name: 'HomeAdmin' }">
@@ -29,46 +29,49 @@
         </v-carousel-item>
       </v-carousel>
 
-      <v-layout>
-        <v-flex ml-5 class="text-center">
-          <h1 class="primary--text">Nuestro Catalogo</h1>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex ma-5>
-          <h1 class="comple--text">Chaquetas</h1>
-        </v-flex>
-      </v-layout>
-      <v-sheet class="mx-auto green lighten-1" elevation="8" width="1300">
-        <v-slide-group
-          v-model="model"
-          class="pa-4"
-          active-class="success"
-          show-arrows
-        >
-          <v-slide-item v-for="n in 10" :key="n" v-slot="{ active, toggle }">
-            <v-card
-              :color="active ? undefined : 'grey lighten-1'"
-              class="ma-4"
-              height="250"
-              width="200"
-              @click="toggle"
-            >
-              <v-row class="fill-height" align="center" justify="center">
-                <v-scale-transition>
-                  <v-icon
-                    v-if="active"
-                    color="white"
-                    size="48"
-                    v-text="'mdi-check-circle-outline'"
-                  ></v-icon>
-                </v-scale-transition>
-              </v-row>
-            </v-card>
-          </v-slide-item>
-        </v-slide-group>
-      </v-sheet>
-      <v-footer color="teal lighten-2">
+      <div v-for="(data, key) in dataArticulos" :key="key">
+        <v-sheet class="mx-auto bg" elevation="8" width="1300">
+        <v-layout d-flex justify-center class="mt-4 pt-3">
+          <h1 class="dark--text">{{ data.nombre }}</h1>
+        </v-layout>
+          <v-slide-group
+            :v-model="true"
+            class="pa-4"
+            active-class="success"
+            show-arrows
+          >
+            <v-slide-item v-for="(item, key) in data.articulos" :key="key">
+
+              <v-card class="mx-1" max-width="75%" outlined>
+                <v-list-item three-line>
+                  <v-list-item-content>
+                    <div class="overline mb-4">{{item.codigo}}</div>
+                    <v-list-item-title class="headline mb-1">
+                      {{item.nombre}}
+                    </v-list-item-title>
+                    <v-list-item-subtitle
+                      >{{item.descripcion}}</v-list-item-subtitle
+                    >
+                  </v-list-item-content>
+
+                  <v-list-item-avatar
+                    tile
+                    size="150"
+                    color="grey"
+                  ></v-list-item-avatar>
+                </v-list-item>
+
+                <v-card-actions>
+                  <v-btn outlined rounded text> {{item.precio_venta}} </v-btn>
+                </v-card-actions>
+              </v-card>
+             
+            </v-slide-item>
+          </v-slide-group>
+        </v-sheet>
+      </div>
+
+      <v-footer color="bg " class="mt-5">
         <v-container>
           <v-layout align-center justify-center row>
             <div>
@@ -106,6 +109,8 @@ import axios from "axios";
 export default {
   data() {
     return {
+      dataArticulos: [],
+      isloading: true,
       items: [
         "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80",
         "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
@@ -149,5 +154,6 @@ export default {
 }
 body {
   padding-top: 0.5rem;
+  background-color: "bg";
 }
 </style>
